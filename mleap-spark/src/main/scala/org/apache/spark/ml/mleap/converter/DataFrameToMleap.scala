@@ -6,7 +6,7 @@ import com.truecar.mleap.spark.SparkDataset
 import com.truecar.mleap.runtime.types
 import com.truecar.mleap.spark.SparkLeapFrame
 import org.apache.spark.ml.mleap
-import org.apache.spark.mllib.linalg.{Vector, VectorUDT}
+import org.apache.spark.ml.linalg.{Vector, VectorUDT}
 import org.apache.spark.sql.{DataFrame, Row}
 import org.apache.spark.sql.types._
 import com.truecar.mleap.runtime.{Row => MleapRow}

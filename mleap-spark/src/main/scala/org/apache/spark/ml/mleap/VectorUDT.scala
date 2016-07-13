@@ -26,7 +26,7 @@ class VectorUDT extends UserDefinedType[linalg.Vector] {
       StructField("values", ArrayType(DoubleType, containsNull = false), nullable = true)))
   }
 
-  override def serialize(obj: Any): InternalRow = {
+  override def serialize(obj: linalg.Vector): InternalRow = {
     obj match {
       case SparseVector(size, indices, values) =>
         val row = new GenericMutableRow(4)
@@ -64,7 +64,7 @@ class VectorUDT extends UserDefinedType[linalg.Vector] {
     }
   }
 
-  override def pyUDT: String = "pyspark.mllib.linalg.VectorUDT"
+  override def pyUDT: String = "pyspark.ml.linalg.VectorUDT"
 
   override def userClass: Class[linalg.Vector] = classOf[linalg.Vector]
 

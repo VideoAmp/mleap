@@ -21,7 +21,6 @@ import ml.bundle.v1.runtime.classification.LogisticRegressionModel.LogisticRegre
 import ml.bundle.v1.runtime.classification.SupportVectorMachineModel.SupportVectorMachineModel
 import ml.bundle.v1.runtime.feature.OneHotEncoderModel.OneHotEncoderModel
 import ml.bundle.v1.runtime.feature.ReverseStringIndexerModel.ReverseStringIndexerModel
-import org.apache.spark.ml.mleap.classification.SVMModel
 import org.apache.spark.ml._
 import org.apache.spark.ml.tree.Node
 
@@ -50,10 +49,8 @@ trait MlJsonSerializer extends Serializer {
   val randomForestClassificationModelSerializer: BundleSerializer[classification.RandomForestClassificationModel] = conversionSerializer[classification.RandomForestClassificationModel, RandomForestClassificationModel[Node]](RandomForestClassificationModelSerializer(mlRandomForestClassificationModelMetaDataSerializer,
     randomForestClassificationSerializer))
   val logisticRegressionModelSerializer: StreamSerializer[classification.LogisticRegressionModel] = conversionSerializer[classification.LogisticRegressionModel, LogisticRegressionModel](mlLogisticRegressionModelSerializer)
-  val supportVectorMachineModelSerializer: StreamSerializer[SVMModel] = conversionSerializer[SVMModel, SupportVectorMachineModel](mlSupportVectorMachineModelSerializer)
 
   addSerializer(logisticRegressionModelSerializer)
-  addSerializer(supportVectorMachineModelSerializer)
   addSerializer(randomForestClassificationModelSerializer)
 
   // feature

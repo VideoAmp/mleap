@@ -21,7 +21,7 @@ object LeapFrameBuilder {
         schema.getField(name) match {
           case Some(field) =>
             if(field.dataType == dataType) {
-              Success(t, schema.indexOf(name))
+              Success((t, schema.indexOf(name)))
             } else {
               Failure(new Error(s"Field $name expected data type ${field.dataType} but found $dataType"))
             }

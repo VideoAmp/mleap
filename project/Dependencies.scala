@@ -1,7 +1,7 @@
 import sbt._
 
 object Dependencies {
-  val sparkVersion = "1.6.0"
+  val sparkVersion = "2.0.1-SNAPSHOT"
   val akkaVersion = "2.4.1"
   val bundleMlVersion = "0.1.1"
 

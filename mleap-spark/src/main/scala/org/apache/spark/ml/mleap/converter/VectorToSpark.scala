@@ -1,7 +1,7 @@
 package org.apache.spark.ml.mleap.converter
 
 import com.truecar.mleap.core.linalg
-import org.apache.spark.mllib.linalg.{Vectors, Vector}
+import org.apache.spark.ml.linalg.{Vectors, Vector}
 
 /**
   * Created by hwilkins on 11/18/15.

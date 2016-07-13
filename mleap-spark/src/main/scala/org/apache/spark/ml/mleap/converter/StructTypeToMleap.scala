@@ -2,7 +2,7 @@ package org.apache.spark.ml.mleap.converter
 
 import com.truecar.mleap.runtime.types
 import org.apache.spark.SparkException
-import org.apache.spark.mllib.linalg.VectorUDT
+import org.apache.spark.ml.linalg.VectorUDT
 import org.apache.spark.sql.types._
 
 /**

@@ -7,8 +7,8 @@ import org.apache.spark.ml.{Estimator, Model}
 import org.apache.spark.ml.param.ParamMap
 import org.apache.spark.ml.param.shared.{HasInputCol, HasOutputCol}
 import org.apache.spark.ml.util.Identifiable
-import org.apache.spark.mllib.linalg.Vectors
-import org.apache.spark.sql.DataFrame
+import org.apache.spark.ml.linalg.Vectors
+import org.apache.spark.sql.{DataFrame, Dataset}
 import org.apache.spark.sql.types.{DoubleType, NumericType, StructType}
 import org.apache.spark.sql.functions
 
@@ -43,7 +43,7 @@ class OneHotEncoderModel(override val uid: String, val size: Int) extends Model[
 
   override def copy(extra: ParamMap): OneHotEncoderModel = defaultCopy(extra)
 
-  override def transform(dataset: DataFrame): DataFrame = {
+  override def transform(dataset: Dataset[_]): DataFrame = {
     val inputColName = $(inputCol)
     val outputColName = $(outputCol)
     val shouldDropLast = $(dropLast)
@@ -143,7 +143,7 @@ class OneHotEncoder(override val uid: String) extends Estimator[OneHotEncoderMod
   /** @group setParam */
   def setOutputCol(value: String): this.type = set(outputCol, value)
 
-  override def fit(dataset: DataFrame): OneHotEncoderModel = {
+  override def fit(dataset: Dataset[_]): OneHotEncoderModel = {
     // schema transformation
     val inputColName = $(inputCol)
     val outputColName = $(outputCol)

@@ -4,12 +4,11 @@ import com.truecar.mleap.runtime.transformer
 import org.apache.spark.ml.PipelineModel
 import org.apache.spark.ml.classification.{LogisticRegressionModel, RandomForestClassificationModel}
 import org.apache.spark.ml.feature.{IndexToString, StandardScalerModel, StringIndexerModel, VectorAssembler}
-import org.apache.spark.ml.mleap.classification.SVMModel
-import org.apache.spark.ml.mleap.converter.runtime.classification.{LogisticRegressionModelToMleap, RandomForestClassificationModelToMleap, SupportVectorMachineModelToMleap}
+import org.apache.spark.ml.mleap.converter.runtime.classification.{LogisticRegressionModelToMleap, RandomForestClassificationModelToMleap}
 import org.apache.spark.ml.mleap.converter.runtime.feature._
 import org.apache.spark.ml.mleap.converter.runtime.regression.{LinearRegressionModelToMleap, RandomForestRegressionModelToMleap}
 import org.apache.spark.ml.mleap.feature.OneHotEncoderModel
-import org.apache.spark.ml.regression.{LinearRegressionModel, RandomForestRegressionModel}
+import org.apache.spark.ml.regression.{DecisionTreeRegressionModel, LinearRegressionModel, RandomForestRegressionModel}
 
 /**
   * Created by hollinwilkins on 4/17/16.
@@ -26,8 +25,6 @@ trait BaseTransformerConverter extends SparkTransformerConverter {
     addConverter(LogisticRegressionModelToMleap)
   implicit val mleapRandomForestClassificationModelToMleap: TransformerToMleap[RandomForestClassificationModel, transformer.RandomForestClassificationModel] =
     addConverter(RandomForestClassificationModelToMleap)
-  implicit val mleapSupportVectorMachineModelToMleap: TransformerToMleap[SVMModel, transformer.SupportVectorMachineModel] =
-    addConverter(SupportVectorMachineModelToMleap)
 
   //feature
   implicit val mleapOneHotEncoderToMleap: TransformerToMleap[OneHotEncoderModel, transformer.OneHotEncoderModel] =

@@ -11,7 +11,7 @@ import org.apache.spark.ml.mleap.converter.runtime.regression.DecisionTreeRegres
 import org.apache.spark.ml.regression.DecisionTreeRegressionModel
 import org.apache.spark.ml.tree._
 import org.apache.spark.ml.Transformer
-import org.apache.spark.mllib.linalg._
+import org.apache.spark.ml.linalg._
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, SQLContext}
 

@@ -33,11 +33,10 @@ import ml.bundle.v1.runtime.feature.StringIndexerModel.StringIndexerModel
 import ml.bundle.v1.runtime.feature.TokenizerModel.TokenizerModel
 import ml.bundle.v1.runtime.feature.VectorAssemblerModel.VectorAssemblerModel
 import ml.bundle.v1.runtime.regression.LinearRegressionModel.LinearRegressionModel
-import org.apache.spark.ml.mleap.classification.SVMModel
 import org.apache.spark.ml._
 import org.apache.spark.ml.util.Identifiable
 import org.apache.spark.mllib
-import org.apache.spark.mllib.linalg
+import org.apache.spark.ml.linalg
 import org.apache.spark.mllib.tree.impurity.GiniCalculator
 
 /**
@@ -307,18 +306,6 @@ trait Converters {
       model.model.intercept)
       .setFeaturesCol(model.featuresCol)
       .setPredictionCol(model.predictionCol)
-  }
-
-  implicit def sparkSupportVectorMachineModelToMl(model: SVMModel): SupportVectorMachineModel = {
-    val m = SupportVectorMachine(model.model.weights, model.model.intercept, model.getThreshold)
-    SupportVectorMachineModel(featuresCol = model.getFeaturesCol,
-      predictionCol = model.getPredictionCol,
-      model = m)
-  }
-
-  implicit def mlSupportVectorMachineModelToSpark(model: SupportVectorMachineModel): SVMModel = {
-    val m = new mllib.classification.SVMModel(model.model.coefficients, model.model.intercept)
-    new SVMModel(m)
   }
 
   implicit def sparkDecisionTreeClassificationToMl(model: classification.DecisionTreeClassificationModel): DecisionTreeClassification[tree.Node] = {

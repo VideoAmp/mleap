@@ -4,12 +4,12 @@ import com.typesafe.sbt.pgp.PgpKeys._
 import com.trueaccord.scalapb.ScalaPbPlugin
 
 object Common {
-  val appVersion = "0.1.6-SNAPSHOT"
+  val appVersion = "0.1.6-vamp1-SNAPSHOT"
 
   val settings: Seq[Def.Setting[_]] = Seq(
     version := appVersion,
-    scalaVersion := "2.11.7",
-    crossScalaVersions := Seq("2.10.6", "2.11.7"),
+    scalaVersion := "2.11.8",
+    crossScalaVersions := Seq("2.10.6", "2.11.8"),
     organization := "com.truecar.mleap",
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
     resolvers ++= {
@@ -22,6 +22,17 @@ object Common {
     }
   )
 
+  val vampSettings: Seq[Def.Setting[_]] = Seq(
+    publishMavenStyle := true,
+    publishTo := {
+      val repo = "https://videoamp.artifactoryonline.com/videoamp"
+      if (isSnapshot.value)
+        Some("vamp snapshots" at repo + "/snapshot")
+      else
+        Some("vamp releases" at repo + "/release")
+    },
+    publishArtifact in Test := false
+  )
   val sonatypeSettings: Seq[Def.Setting[_]] = Seq(
     publishMavenStyle in publishSigned := true,
     publishTo in publishSigned := {
